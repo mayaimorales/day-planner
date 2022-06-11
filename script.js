@@ -33,18 +33,28 @@ var schedule = [
     {
         time: 2,
         message: "",
-    },{
+    },
+    {
         time: 3,
         message: "",
-    },{
+    },
+    {
         time: 4,
         message: "",
-    },{
+    },
+    {
         time: 5,
         message: "",
     }
 ];
 
 function Day(){
-    
+    if (currentHour >= 12){
+        morning = false;
+        if (currentHour > 12 ){
+            currentHour = currentHour - 12;
+        }
+    }else{
+        morning = true;
+    }
 }
