@@ -7,7 +7,7 @@ var currentHour = today.hour();
 
 var currentDay;
 
-var morning;
+var isMorning;
 
 //schedule definition for each day, messages are empty
 var schedule = [
@@ -52,12 +52,12 @@ var schedule = [
 function Day(){
     //will distinguish hour in the day and if it is morning or evening
     if (currentHour >= 12){
-        morning = false;
+        isMorning = false;
         if (currentHour > 12 ){
             currentHour = currentHour - 12;
         }
     }else{
-        morning = true;
+        isMorning = true;
     }
     times.addClass('mb-3');
     //goes through necessary hours for work day
@@ -84,7 +84,7 @@ function Day(){
 
 };
 
-function Hour(hour, am){
+function Hour(hour, morning){
     var div = $('<div>');
     div.addClass('time-block');
     div.addClass('row');
@@ -92,4 +92,51 @@ function Hour(hour, am){
 
     var p = $('<p>');
     p.addClass('hour');
+
+    if(morning){
+        p.text(hour + "a.m.");
+    }else{
+        p.text(hour + "p.m.");
+    }
+    p.addClass('col-sm-1');
+
+    var form = $('<form>');
+    var input = $('<textarea>');
+    input.addClass('w-100 h-100');
+
+    if(morning && isMorning){
+        if(currentHour > hour){
+            input.addClass('past');
+        }
+        else if(currentHour == hour){
+            input.addClass('present');
+        }else{
+            input.addClass('future');
+        }
+    }
+
+    else if(!morning && !isMorning ){
+        if (currentHour == 12 || hour ==12 ){
+            if(currentHour == 12 && hour != 12){
+                input.addClass('future');
+            }
+            else if(currentHour == 12 && hour ==12){
+                input.addClass('present');
+            }
+            else{
+                input.addClass('past');
+            }
+        }
+        else if(currentHour > hour){
+            
+        }
+        
+    }
+
+
+
+
+
+
+    Day();
 }
