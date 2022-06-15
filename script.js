@@ -155,10 +155,10 @@ function Hour(hour, morning){
     button.addClass('col-sm-1');
     button.attr("data-number", hour);
 
+    //append elements to page
+    div.append(p);
+    div.append(form);
+    div.append(button);
+    times.append(div);
 
-
-
-
-
-    Day();
-}
+};
