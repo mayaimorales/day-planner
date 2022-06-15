@@ -128,10 +128,32 @@ function Hour(hour, morning){
             }
         }
         else if(currentHour > hour){
-            
+            input.addClass('past');
         }
-        
+        else if(currentHour == hour){
+            input.addClass('present');
+        }else{
+            input.addClass('future');
+        }
     }
+    // if creating hour in the afternoon but the time is morning at the time of creation
+    else if(!morning && isMorning){
+        input.addClass('future');
+    }
+    // for at the time of creation is afternoon but recording hours that happened in the morning
+    else{
+        input.addClass('past');
+    }
+    input.attr("id", "for-btn-" + hour);
+    form.append(input);
+    form.addClass('col-sm-10 p-0');
+
+    //create button with styling and given the attribute of data-number for identification
+    var button = $('<button>');
+    button.text('🔒');
+    button.addClass('saveBtn');
+    button.addClass('col-sm-1');
+    button.attr("data-number", hour);
 
 
 
