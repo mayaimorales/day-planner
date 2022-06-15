@@ -1,4 +1,4 @@
-var today = moment();
+var today = moment(); // using moment.js
 
 var times = $(".container");
 var date = $("currentDay");
