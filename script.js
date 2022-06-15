@@ -72,7 +72,7 @@ function Day(){
     //sets today's date format
     date.text(today.format("MMM Do, YYYY"));
 
-    currentDay = JSON.parse(localStorage.getItem('schedule'));
+    currentWorkDay = JSON.parse(localStorage.getItem('schedule'));
 
     if(currentWorkDay == null){
         currentWorkDay = schedule;
