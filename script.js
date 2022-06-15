@@ -5,7 +5,7 @@ var date = $("currentDay");
 
 var currentHour = today.hour();
 
-var currentDay;
+var currentWorkDay;
 
 var isMorning;
 
@@ -65,7 +65,7 @@ function Day(){
         Hour(i, true);
     }
     Hour(12, false);
-    for(var i = 12; i < 6; i++){
+    for(var i = 1; i < 6; i++){
         Hour(i, false);
     }
 
@@ -74,12 +74,12 @@ function Day(){
 
     currentDay = JSON.parse(localStorage.getItem('schedule'));
 
-    if(currentDay == null){
-        currentDay = schedule;
+    if(currentWorkDay == null){
+        currentWorkDay = schedule;
     }
 
     for (i=0; i<times.children().length; i++){
-        times.children().eq(i).children().eq(1).children().first.val(currentDay[i].message);
+        times.children().eq(i).children().eq(1).children().first.val(currentWorkDay[i].message);
     }
 
 };
@@ -167,13 +167,13 @@ function saveText(event){
     var buttonClick = event.currentTarget.getAttribute("data-number");
     var input = $(event.currentTarget).siblings().eq(1).children().first().val();
 
-    for (var i=0; i < currentDay.length; i++){
-        if (currentDay[i].time == buttonClick){
-            currentDay[i].message = input;
+    for (var i=0; i < currentWorkDay.length; i++){
+        if (currentWorkDay[i].time == buttonClick){
+            currentWorkDay[i].message = input;
         }
     }
     // saves message to local storage
-    localStorage.setItem("schedule", JSON.stringify(currentDay));
+    localStorage.setItem("schedule", JSON.stringify(currentWorkDay));
 
 }
 
