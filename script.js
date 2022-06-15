@@ -162,3 +162,23 @@ function Hour(hour, morning){
     times.append(div);
 
 };
+
+function saveText(event){
+    var buttonClick = event.currentTarget.getAttribute("data-number");
+    var input = $(event.currentTarget).siblings().eq(1).children().first().val();
+
+    for (var i=0; i < currentDay.length; i++){
+        if (currentDay[i].time == buttonClick){
+            currentDay[i].message = input;
+        }
+    }
+    // saves message to local storage
+    localStorage.setItem("schedule", JSON.stringify(currentDay));
+
+}
+
+// button click event listener
+times.on("click", ".saveBtn", saveText);
+
+// calls upon Day function
+Day();
